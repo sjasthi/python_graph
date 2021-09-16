@@ -1,0 +1,50 @@
+   def max_degree_nodes(self) -> dict:
+        """
+        Return the node(s) with the highest degree
+        Return multiple nodes in the event of a tie
+        Format is a dict where the key is the node_id and the value is an integer for the node degree
+        e.g. {'a': 8}
+        or {'a': 22, 'b': 22}
+        """
+        # empty dictionary of all nodes with corresponding degree
+        #  KEY-VALUE
+        #  KEY (node) - VALUE (count of edges)
+        degrees = {}
+
+        for edge in self.edges:
+            starting_node = edge[0]
+            ending_node = edge[1]
+            if starting_node not in degrees:
+                degrees[starting_node] = 1
+            else:
+                degrees[starting_node] += 1
+
+            if ending_node not in degrees:
+                degrees[ending_node] = 1
+            else:
+                degrees[ending_node] += 1
+
+
+        # right now, degrees dictionary contains everything
+        # degrees of all nodes
+
+
+        # we now have to return the node / nodes with the maximum degree
+        max_degree = 0
+
+        for val in degrees.values():
+            if val > max_degree:
+                max_degree = val
+
+        # once we are done with the above for loop, we are going to get
+        # the value of the max degree
+
+        max_degrees_dict = {}
+
+        # KEY - VALUE
+        # KEY (node)  - VALUE (degree)
+        for node in degrees:
+            if degrees[node] == max_degree:
+                max_degrees_dict[node] = max_degree
+
+        return max_degrees_dict
